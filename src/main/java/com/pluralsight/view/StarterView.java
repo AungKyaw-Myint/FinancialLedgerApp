@@ -10,84 +10,114 @@ public class StarterView {
         boolean flag= true;
         Scanner sc= new Scanner(System.in);
 
-        while (true){
-            mainMenu();
-            System.out.print("Please choose the menu :");
-            String option= sc.nextLine();
+        while (flag){
 
-            switch (option) {
-                case "D":
+            try {
+                mainMenu();
+                System.out.print("Please choose the menu :");
+                String option= sc.nextLine();
 
-                    break;
-                case "P":
+                switch (option) {
+                    case "D":
 
-                    break;
-                case "L":
+                        break;
+                    case "P":
 
-                    break;
-                case "E":
-                    flag=false;
-                    break;
-                default:
-                    System.out.println("Invalid Option!");
+                        break;
+                    case "L":
+                        ledgerFunction(sc);
+                        break;
+                    case "E":
+                        flag=false;
+                        System.out.println("Exit the program!");
+                        break;
+                    default:
+                        System.out.println("Invalid Option!");
+                }
+            }catch (Exception e){
+                System.out.println("Invalid Option!");
             }
+
         }
     }
 
     public void ledgerFunction(Scanner sc){
-        ledgerMenu();
-        System.out.print("Please choose the ledger option :");
-        String option= sc.nextLine();
 
-        switch (option) {
-            case "A":
+        boolean flag= true;
+        while (flag) {
 
-                break;
-            case "D":
+            try {
 
-                break;
-            case "P":
+                ledgerMenu();
+                System.out.print("Please choose the ledger option :");
 
-                break;
-            case "R":
-                reports(sc);
-                break;
-            case "H":
-                break;
-            default:
+                String option = sc.nextLine();
+
+                switch (option) {
+                    case "A":
+
+                        break;
+                    case "D":
+
+                        break;
+                    case "P":
+
+                        break;
+                    case "R":
+                        reports(sc);
+                        break;
+                    case "H":
+                        flag = false;
+                        break;
+                    default:
+                        System.out.println("Invalid Option!");
+                }
+            }catch (Exception e){
                 System.out.println("Invalid Option!");
+            }
         }
     }
 
     public void reports(Scanner sc){
-        reportsMenu();
-        System.out.print("Please choose the reports list :");
-        int option= sc.nextInt();
 
-        switch (option) {
-            case 1:
+        boolean flag= true;
+        while (flag) {
 
-                break;
-            case 2:
+            try {
+                reportsMenu();
+                System.out.print("Please choose the reports list :");
 
-                break;
-            case 3:
+                int option = sc.nextInt();
+                sc.nextLine();
 
-                break;
-            case 4:
+                switch (option) {
+                    case 1:
 
-                break;
-            case 5:
-                break;
-            case 6:
-                break;
+                        break;
+                    case 2:
 
-            case 0:
-                ledgerFunction(sc);
-                break;
-            default:
+                        break;
+                    case 3:
+
+                        break;
+                    case 4:
+
+                        break;
+                    case 5:
+                        break;
+                    case 6:
+                        break;
+
+                    case 0:
+                        flag = false;
+                        break;
+                    default:
+                        System.out.println("Invalid Option!");
+                }
+            }catch (Exception e){
+                sc.nextLine();
                 System.out.println("Invalid Option!");
-                ledgerFunction(sc);
+            }
         }
 
     }
