@@ -1,9 +1,15 @@
 package com.pluralsight.view;
 
-import java.util.List;
+import com.pluralsight.model.Transaction;
+import com.pluralsight.service.LedgerService;
+import com.pluralsight.service.TransactionsService;
 import java.util.Scanner;
 
 public class StarterView {
+
+    private final TransactionView transactionView = new TransactionView();
+    private final TransactionsService transactionsService= new TransactionsService();
+    private final LedgerService ledgerService= new LedgerService();
 
     public void startApplication(){
 
@@ -19,10 +25,14 @@ public class StarterView {
 
                 switch (option) {
                     case "D":
-
+                        Transaction depositTran=transactionView.deposit(sc);
+                        if(depositTran != null)
+                            transactionsService.makeDeposit(depositTran);
                         break;
                     case "P":
-
+                        Transaction payment=transactionView.payment(sc);
+                        if (payment != null)
+                            transactionsService.payment(payment);
                         break;
                     case "L":
                         ledgerFunction(sc);
@@ -35,7 +45,7 @@ public class StarterView {
                         System.out.println("Invalid Option!");
                 }
             }catch (Exception e){
-                System.out.println("Invalid Option!");
+                System.out.println("Invalid Option!" +e);
             }
 
         }
@@ -50,12 +60,11 @@ public class StarterView {
 
                 ledgerMenu();
                 System.out.print("Please choose the ledger option :");
-
                 String option = sc.nextLine();
 
                 switch (option) {
                     case "A":
-
+                        ledgerService.getAllTransaction();
                         break;
                     case "D":
 

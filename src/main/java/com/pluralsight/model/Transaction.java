@@ -1,5 +1,7 @@
 package com.pluralsight.model;
 
+import com.pluralsight.util.DateTimeFormatUtil;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -56,12 +58,9 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return "Transaction{" +
-                "date=" + date +
-                ", time=" + time +
-                ", description='" + description + '\'' +
-                ", vendor='" + vendor + '\'' +
-                ", amount=" + amount +
-                '}';
+        return String.format(
+                "%-12s %-12s %-20s %-18s $%.2f",
+                date.format(DateTimeFormatUtil.DATE_FORMAT), time.format(DateTimeFormatUtil.TIME_FORMAT), description, vendor, amount
+        );
     }
 }
