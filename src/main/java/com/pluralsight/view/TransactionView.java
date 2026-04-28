@@ -30,8 +30,6 @@ public class TransactionView {
 
             System.out.print("Amount :");
             double amount = Double.parseDouble(sc.nextLine());
-//            double amount= sc.nextDouble();
-//            sc.nextLine();
             if (amount < 0) {
                 System.out.println("Amount must be 0 or greater.");
                 return null;

@@ -15,73 +15,96 @@ public class ReportsService {
 
     public void generateMonthToDateReport(){
         List<Transaction> transactionList = new ArrayList<>();
-        transactionList=fileReaderCsv.fileReading();
 
-        LocalDate start = LocalDate.now().withDayOfMonth(1);
+        try {
+            transactionList = fileReaderCsv.fileReading();
 
-        getHeader();
-        for (Transaction transaction: transactionList){
-            if(transaction.getDate().isAfter(start)) {
-                System.out.println(transaction);
+            LocalDate start = LocalDate.now().withDayOfMonth(1);
+
+            getHeader();
+            for (Transaction transaction : transactionList) {
+                if (transaction.getDate().isAfter(start)) {
+                    System.out.println(transaction);
+                }
             }
+        }catch (Exception e){
+            System.out.println("Report Service Failed! "+e);
         }
     }
 
     public void generatePreviousMonthReport(){
-        List<Transaction> transactionList = new ArrayList<>();
-        transactionList=fileReaderCsv.fileReading();
+        try {
+            List<Transaction> transactionList = new ArrayList<>();
+            transactionList = fileReaderCsv.fileReading();
 
-        LocalDate start = LocalDate.now().minusMonths(1).withDayOfMonth(1);
-        LocalDate end = start.withDayOfMonth(start.lengthOfMonth());
+            LocalDate start = LocalDate.now().minusMonths(1).withDayOfMonth(1);
+            LocalDate end = start.withDayOfMonth(start.lengthOfMonth());
 
-        getHeader();
-        for (Transaction transaction: transactionList){
-            if(transaction.getDate().isAfter(start) && transaction.getDate().isBefore(end)) {
-                System.out.println(transaction);
+            getHeader();
+            for (Transaction transaction : transactionList) {
+                if (transaction.getDate().isAfter(start) && transaction.getDate().isBefore(end)) {
+                    System.out.println(transaction);
+                }
             }
+        }catch (Exception e){
+            System.out.println("Report Service Failed! "+e);
         }
     }
 
     public void generateYearToDateReport(){
 
-        List<Transaction> transactionList = new ArrayList<>();
-        transactionList=fileReaderCsv.fileReading();
-        LocalDate start = LocalDate.now().withDayOfYear(1);
+        try {
 
-        getHeader();
-        for (Transaction transaction: transactionList){
-            if(transaction.getDate().isAfter(start)) {
-                System.out.println(transaction);
+            List<Transaction> transactionList = new ArrayList<>();
+            transactionList = fileReaderCsv.fileReading();
+            LocalDate start = LocalDate.now().withDayOfYear(1);
+
+            getHeader();
+            for (Transaction transaction : transactionList) {
+                if (transaction.getDate().isAfter(start)) {
+                    System.out.println(transaction);
+                }
             }
+        }catch (Exception e){
+            System.out.println("Report Service Failed! "+e);
         }
     }
 
     public void generatePreviousYearReport(){
 
-        List<Transaction> transactionList = new ArrayList<>();
-        transactionList=fileReaderCsv.fileReading();
+        try {
+            List<Transaction> transactionList = new ArrayList<>();
+            transactionList = fileReaderCsv.fileReading();
 
-        LocalDate start = LocalDate.now().minusYears(1).withDayOfYear(1);
-        LocalDate end = start.withDayOfYear(start.lengthOfYear());
+            LocalDate start = LocalDate.now().minusYears(1).withDayOfYear(1);
+            LocalDate end = start.withDayOfYear(start.lengthOfYear());
 
-        getHeader();
-        for (Transaction transaction: transactionList){
-            if(transaction.getDate().isAfter(start) && transaction.getDate().isBefore(end)) {
-                System.out.println(transaction);
+            getHeader();
+            for (Transaction transaction : transactionList) {
+                if (transaction.getDate().isAfter(start) && transaction.getDate().isBefore(end)) {
+                    System.out.println(transaction);
+                }
             }
+        }catch (Exception e){
+            System.out.println("Report Service Failed! "+e);
         }
     }
 
     public void generateVendorReport(String vendorName){
 
-        List<Transaction> transactionList = new ArrayList<>();
-        transactionList=fileReaderCsv.fileReading();
+        try {
 
-        getHeader();
-        for (Transaction transaction: transactionList){
-            if(transaction.getVendor().toLowerCase().contains(vendorName.toLowerCase())) {
-                System.out.println(transaction);
+            List<Transaction> transactionList = new ArrayList<>();
+            transactionList = fileReaderCsv.fileReading();
+
+            getHeader();
+            for (Transaction transaction : transactionList) {
+                if (transaction.getVendor().toLowerCase().contains(vendorName.toLowerCase())) {
+                    System.out.println(transaction);
+                }
             }
+        }catch (Exception e){
+            System.out.println("Report Service Failed! "+e);
         }
     }
 

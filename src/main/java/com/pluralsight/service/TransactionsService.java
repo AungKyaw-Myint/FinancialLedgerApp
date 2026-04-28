@@ -13,11 +13,19 @@ public class TransactionsService {
 
     public void makeDeposit(Transaction transaction){
 
-        fileWriterCsv.fileWriting(FileNameConfig.TRANSACTION_FILE, transaction);
+        try{
+            fileWriterCsv.fileWriting(FileNameConfig.TRANSACTION_FILE, transaction);
+        }catch (Exception e){
+            System.out.println("Transaction Service Fail! "+e);
+        }
+
     }
 
     public void payment(Transaction transaction){
-
-        fileWriterCsv.fileWriting(FileNameConfig.TRANSACTION_FILE, transaction);
+        try {
+            fileWriterCsv.fileWriting(FileNameConfig.TRANSACTION_FILE, transaction);
+        }catch (Exception e){
+            System.out.println("Transaction Service Fail! "+e);
+        }
     }
 }
