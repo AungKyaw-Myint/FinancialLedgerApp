@@ -6,6 +6,7 @@ import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class FileReaderCsv {
@@ -53,6 +54,10 @@ public class FileReaderCsv {
             throw new RuntimeException(e);
         }
 
+        transactionList.sort(Comparator
+                .comparing(Transaction::getDate, Comparator.reverseOrder())
+                .thenComparing(Transaction::getTime, Comparator.reverseOrder())
+        );
         return transactionList;
     }
 
