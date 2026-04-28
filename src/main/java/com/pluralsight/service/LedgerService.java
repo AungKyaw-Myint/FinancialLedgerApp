@@ -10,13 +10,19 @@ public class LedgerService {
 
     private final FileReaderCsv fileReaderCsv= new FileReaderCsv();
 
-    public void getAllTransaction(){
+    public void getAllTransactions(boolean includeDeposits, boolean includePayments){
 
-        List<Transaction> transactionList = fileReaderCsv.fileReading();
+        List<Transaction> transactionList = new ArrayList<>();
+        transactionList=fileReaderCsv.fileReading();
 
         getHeader();
         for (Transaction transaction: transactionList){
-            System.out.println(transaction);
+            if(includeDeposits && transaction.getAmount() >=0) {
+                System.out.println(transaction);
+            }
+            if (includePayments && transaction.getAmount() <0){
+                System.out.println(transaction);
+            }
         }
     }
 

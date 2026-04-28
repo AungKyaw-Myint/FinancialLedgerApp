@@ -14,7 +14,7 @@ public class FileReaderCsv {
 
 
     public List<Transaction> fileReading(){
-
+        transactionList= new ArrayList<>();
         try {
 
             // File reading from resource folder

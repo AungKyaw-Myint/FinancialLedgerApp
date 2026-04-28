@@ -2,6 +2,7 @@ package com.pluralsight.view;
 
 import com.pluralsight.model.Transaction;
 import com.pluralsight.service.LedgerService;
+import com.pluralsight.service.ReportsService;
 import com.pluralsight.service.TransactionsService;
 import java.util.Scanner;
 
@@ -10,6 +11,7 @@ public class StarterView {
     private final TransactionView transactionView = new TransactionView();
     private final TransactionsService transactionsService= new TransactionsService();
     private final LedgerService ledgerService= new LedgerService();
+    private final ReportsService reportsService= new ReportsService();
 
     public void startApplication(){
 
@@ -64,13 +66,13 @@ public class StarterView {
 
                 switch (option) {
                     case "A":
-                        ledgerService.getAllTransaction();
+                        ledgerService.getAllTransactions(true, true);
                         break;
                     case "D":
-
+                        ledgerService.getAllTransactions(true, false);
                         break;
                     case "P":
-
+                        ledgerService.getAllTransactions(false, true);
                         break;
                     case "R":
                         reports(sc);
@@ -101,22 +103,25 @@ public class StarterView {
 
                 switch (option) {
                     case 1:
-
+                        reportsService.generateMonthToDateReport();
                         break;
                     case 2:
-
+                        reportsService.generatePreviousMonthReport();
                         break;
                     case 3:
-
+                        reportsService.generateYearToDateReport();
                         break;
                     case 4:
-
+                        reportsService.generatePreviousYearReport();
                         break;
                     case 5:
+                        System.out.print("Search by vendor name :");
+                        String vendorName= sc.nextLine();
+                        reportsService.generateVendorReport(vendorName);
                         break;
                     case 6:
+                        customSearch(sc);
                         break;
-
                     case 0:
                         flag = false;
                         break;
@@ -128,6 +133,27 @@ public class StarterView {
                 System.out.println("Invalid Option!");
             }
         }
+    }
+
+    public void customSearch(Scanner sc){
+        System.out.println("-----Custom Search----");
+        System.out.print("Start Date (yyyy-MM-dd):");
+        String startDate = sc.nextLine();
+
+        System.out.print("End Date (yyyy-MM-dd):");
+        String endDate = sc.nextLine();
+
+        System.out.print("Description:");
+        String description = sc.nextLine();
+
+        System.out.print("Vendor:");
+        String vendor = sc.nextLine();
+
+        System.out.print("Amount:");
+//        double amount = sc.nextDouble();
+        String amount = sc.nextLine();
+
+        reportsService.customSearchReport(startDate,endDate,description,vendor,amount);
 
     }
 
